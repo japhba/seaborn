@@ -375,7 +375,7 @@ def plotting_context(context=None, font_scale=1, rc=None):
     else:
 
         contexts = ["paper", "notebook", "talk", "poster"]
-        if context not in contexts:
+        if context not in contexts and type(context) != str:
             raise ValueError(f"context must be in {', '.join(contexts)}")
 
         # Set up dictionary of default parameters
@@ -413,7 +413,7 @@ def plotting_context(context=None, font_scale=1, rc=None):
         base_context.update(texts_base_context)
 
         # Scale all the parameters by the same factor depending on the context
-        scaling = dict(paper=.8, notebook=1, talk=1.5, poster=2)[context]
+        scaling = dict(paper=.8, notebook=1, talk=1.5, poster=2)[context] if type(context) == str else context
         context_dict = {k: v * scaling for k, v in base_context.items()}
 
         # Now independently scale the fonts
