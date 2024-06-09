@@ -375,7 +375,7 @@ def plotting_context(context=None, font_scale=1, rc=None):
     else:
 
         contexts = ["paper", "notebook", "talk", "poster"]
-        if context not in contexts and type(context) != str:
+        if context not in contexts and type(context) not in [float, int]:
             raise ValueError(f"context must be in {', '.join(contexts)}")
 
         # Set up dictionary of default parameters
